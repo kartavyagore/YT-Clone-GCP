@@ -1,24 +1,27 @@
+FROM node:18 AS builder
 
-# Use an official Node.js runtime as a parent image
-FROM node:18
-
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json files
 COPY package*.json ./
 
-# Install any needed pkgs specifies in package.json
-RUN apt-get update && apt-get install -y ffmpeg
-
-# Install Node.js dependencies
 RUN npm install
 
-# Copy the rest of the application code
 COPY . .
 
-# Expose the port the app runs on
+RUN npm run build
+
+FROM node:18
+
+RUN apt-get update && apt-get install -y ffmpeg
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install --only=production
+
+COPY --from=builder /app/dist ./dist
+
 EXPOSE 3000
 
-# Define the command to run the app
-CMD ["npm", "start"]
+CMD ["npm","run","serve"]

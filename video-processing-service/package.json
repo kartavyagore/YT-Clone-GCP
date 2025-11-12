@@ -5,15 +5,15 @@
   "license": "ISC",
   "author": "Kartavya Gore",
   "type": "commonjs",
-  "outDir": "dist",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "ts-node src/index.js",
     "build": "tsc",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "serve": "node dist/index.ts"
+    "serve": "node dist/index.js"
   },
   "dependencies": {
+    "@google-cloud/storage": "^7.17.3",
     "express": "^5.1.0",
     "fluent-ffmpeg": "^2.1.3"
   },

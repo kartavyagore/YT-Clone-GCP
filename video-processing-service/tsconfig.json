@@ -6,8 +6,11 @@
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
-    "outDir": "../../built/local",
-    "sourceMap": true
+    "outDir": "./dist",  
+    "sourceMap": true,
+    "typeRoots": ["./node_modules/@types"],
+    "types": [],
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["**/*.spec.ts"]
